@@ -14,6 +14,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    
 }
 
 a {
@@ -51,7 +52,7 @@ h6 {
 
 
 .container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     font-family: var(--font-family);
     font-weight: 400;
@@ -101,8 +102,9 @@ h6 {
     display: flex;
     justify-content: space-between;
     margin-top: -30px;
-    max-width: 1200px;
+    max-width: 1400px;
     font-size: 20px;
+    align-items: center;
 }
 
 .nav-menu {
@@ -131,9 +133,10 @@ h6 {
 .button__orange {
     background-color: var(--orange);
     color: var(--blue);
-    margin-bottom: 220px;
+
 
 }
+
 .section-about-us {
     position: relative;
     background-image: url(../assets/beautiful-view-construction-site-city-sunset.jpg);
@@ -141,8 +144,9 @@ h6 {
     background-position: center center;
     background-size: cover;
     background-color: var(--white);
-    padding-top: 260px;
+    padding: 260px 0px;
     z-index: 1;
+    margin-bottom: 140px;
 }
 
 .section-about-us::after {
@@ -158,7 +162,7 @@ h6 {
     z-index: -1;
 }
 
-.about-us__mission {
+.section__remark {
     max-width: 75%;
     font-family: var(--font-family);
     font-weight: 400;
@@ -174,8 +178,15 @@ h6 {
     margin-bottom: 31px;
 }
 
+.advantages__remark {
+    color: var(--blue);
+    max-width: 100%;
+    gap: 10px;
+    background-color: rgba(170, 170, 170, 0.2);
+}
 
-.section-header {
+
+.main-header {
     max-width: 75%;
     font-family: var(--second-family);
     font-weight: 400;
@@ -196,3 +207,217 @@ h6 {
     color: var(--white);
     margin-bottom: 30px;
 }
+
+.section-advantages {
+    display: flex;
+    gap: 50px;
+}
+
+.advantages__img {
+    max-height: 700px;
+    max-width: 50%;
+    position: relative;
+    object-fit: cover;
+}
+
+.section-header {
+    color: var(--blue);
+    font-family: var(--second-family);
+    font-size: 45px;
+    line-height: 58.5px;
+    letter-spacing: 0.36px;
+    font-weight: 400;
+    margin-bottom: 12px;
+}
+
+.advantages__company {
+    margin-bottom: 12px;
+}
+
+.section {
+    margin-bottom: 140px;
+}
+
+.advantages {
+    display: flex;
+    gap: 40px;
+    margin-top: 20px;
+    align-items: center;
+    vertical-align: baseline;
+}
+
+.advantages__point {
+    text-align: center;
+    padding: 24px 50px;
+    background-color: rgba(170, 170, 170, 0.2);
+}
+
+.point__number {
+    color: var(--orange);
+    font-family: var(--second-family);
+    font-size: 80px;
+    font-weight: 400;
+    margin-bottom: 16px;
+}
+
+.point__text {
+    color: var(--blue);
+
+}
+
+.section-offer {
+    background-color: var(--orange);
+    max-width: 1400px;
+    margin: 0 auto;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 150%;
+    letter-spacing: 0.02em;
+    color: var(--text);
+    padding-top: 150px;
+    text-align: center;
+    overflow: visible;
+    max-height: 900px;
+}
+
+
+.offer__remark {
+    background-color: var(--white);
+    color: var(--blue);
+    justify-content: center;
+    max-width: fit-content;
+    margin: 0 auto;
+}
+
+.offer-header {
+    margin-top: 22px;
+}
+
+.offer-description {
+    color: var(--blue);
+    padding: 0 315px;
+    max-width: none;
+
+}
+
+.offer-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+
+
+.article-company {
+    display: flex;
+    gap: 60px;
+}
+
+
+.article-company__img {
+    max-width: 50%;
+    max-height: 366px;
+}
+
+
+.company__remark {
+    color: var(--blue);
+    justify-content: center;
+    max-width: fit-content;
+    margin: 0 auto;
+    background-color: rgba(170, 170, 170, 0.2);
+    margin-bottom: 22px;
+}
+
+.description__text{
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+
+.article {
+    display: none;
+    margin: 0px 140px;
+    padding: 60px;
+    box-shadow: -1px 6px 18px 0px rgba(0, 0, 0, 0.09);
+}
+
+.active {
+    display: block;
+    background-color: var(--white);
+}
+
+.pop-up {
+    display: none;
+}
+
+.wrapper {
+    display: flex;
+    gap: 60px;
+}
+
+.section-value {
+    margin-top: 240px;
+}
+
+.offer-buttons__item {
+    border: var(--blue) 1px solid;
+    padding: 16px 41px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    color: var(--blue);
+    font-size: 20px;
+}
+
+.section-value {
+    margin-top: 200px;
+    display: flex;
+    gap: 70px;
+    align-items: center;
+}
+
+.value__remark {
+    background-color:  rgba(170, 170, 170, 0.2);
+    color: var(--blue);
+    margin: 0 auto;
+    max-width: fit-content;
+}
+
+.value-header {
+    margin-top: 20px; 
+    margin-bottom: 40px;
+}
+
+.value-list__item {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 35px;
+    align-items: center;
+    color: var(--black);
+    font-family: var(--second-family);
+
+}
+
+.price__remark {
+    background-color: var(--white);
+    background-color: rgba(170, 170, 170, 0.2);
+    color: var(--blue);
+    max-width: fit-content;
+}
+
+.section-prices {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+ .price-description {
+    display: flex;
+ }
+
+ .section-description {
+    color: var(--text);
+ }
+
