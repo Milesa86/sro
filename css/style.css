@@ -14,6 +14,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    /* outline: 1px solid red; */
 
 }
 
@@ -50,6 +51,20 @@ h6 {
     margin: 0;
 }
 
+body {
+    overflow-x: hidden;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 150%;
+    letter-spacing: 0.02em;
+    color: var(--text);
+}
+
+.lock {
+    overflow: hidden;
+}
+
 .visually-hidden {
     position: absolute;
     width: 1px;
@@ -59,26 +74,81 @@ h6 {
     border: 0;
     clip: rect(0 0 0 0);
     overflow: hidden;
-  }
+}
 
 
 .container {
     max-width: 1400px;
     margin: 0 auto;
-    font-family: var(--font-family);
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 150%;
-    letter-spacing: 0.02em;
-    color: var(--text);
     position: relative;
 }
+
+/*_________HEADER_________*/
+
+/*_________MARQUEE_________*/
+
+.marquee {
+    overflow: hidden;
+}
+
+.header-headline {
+    text-align: center;
+    animation: text 15s linear infinite;
+    padding-left: 100%;
+    white-space: nowrap;
+}
+
+@keyframes text {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(-160%, 0);
+    }
+
+}
+
+/*_________/\MARQUEE_________*/
 
 .nav-contacts {
     display: flex;
     justify-content: space-between;
     margin-top: 30px;
     margin-bottom: 60px;
+}
+
+@media screen and (max-width: 700px) {
+    .nav-contacts svg {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .nav-contacts img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .contacts-description {
+        display: none;
+    }
+
+    .contacts-list {
+        gap: 30px;
+
+    }
+
+    .nav-contacts {
+        padding-bottom: 10px;
+        justify-content: space-around;
+    }
+
+}
+
+@media screen and (min-width: 700px) and (max-width: 1400px) {
+    .nav-contacts {
+        padding: 0 15px;
+    }
 }
 
 .contacts-list {
@@ -102,8 +172,101 @@ h6 {
     margin-bottom: 7.5px;
 }
 
+.contacts-list__link svg {
+    transition: all 0.35s;
+}
 
-.header-nav {
+/*_________BURGER MENU_________*/
+
+.nav-menu {
+    display: flex;
+    gap: 75px;
+    color: var(--black);
+}
+
+
+
+
+@media screen and (max-width: 700px) {
+
+    .burger-menu {
+        display: block;
+        width: 50px;
+        height: 30px;
+        position: relative;
+        z-index: 15;
+        cursor: pointer;
+
+    }
+
+    .burger-menu span {
+        position: absolute;
+        top: calc(50% - 2px);
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: var(--blue);
+    }
+
+    .burger-menu span:first-child {
+        top: 0;
+    }
+
+    .burger-menu span:last-child {
+        top: auto;
+        bottom: 0;
+    }
+
+    .active-menu span {
+        transform: scale(0);
+    }
+
+    .active-menu span:first-child {
+        transform: rotate(-45deg);
+        top: calc(50% - 2px);
+    }
+
+    .active-menu span:last-child {
+        transform: rotate(45deg);
+        bottom: calc(50% - 2px);
+    }
+
+    .header-nav {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        height: 100vh;
+        width: 100%;
+        background-color: var(--background);
+        display: flex;
+        transition: all .2s;
+
+
+    }
+
+    .active-menu {
+        left: 0;
+    }
+
+    .nav-menu {
+        flex-direction: column;
+        gap: 0px;
+        margin: auto;
+    }
+
+    .nav-menu__item {
+        display: block;
+        font-size: 30px;
+        line-height: 50px;
+        padding: 30px;
+
+    }
+}
+
+/*_________/\BURGER MENU_________*/
+
+
+.header-menu {
     position: absolute;
     left: 0;
     right: 0;
@@ -118,11 +281,175 @@ h6 {
     align-items: center;
 }
 
-.nav-menu {
-    display: flex;
-    gap: 75px;
-    color: var(--black);
+@media screen and (min-width: 700px) and (max-width: 1000px) {
+    .header-menu {
+    font-size: 16px;
+    text-align: center;
+    }
 }
+
+/*________POP-UP CALL_________*/
+
+.popup-call {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+   background-color: transparent;
+    z-index: 15;
+    transform: translateY(-44.5%) scale(0);
+    transition: .4s ease-in-out;
+}
+.popup__container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.card {
+    margin: auto;
+    width: 340px;
+    height: 354px;
+    padding: 0 15px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    background: #fff;
+    border-radius: 20px;
+    position: relative;
+  } 
+
+  .card__title {
+    font-size: 23px;
+    font-weight: 900;
+    color: var(--blue);
+  }
+  
+  .card__content {
+    font-size: 13px;
+    line-height: 18px;
+    color: var(--blue);
+  }
+  
+  .card__form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .card__form input {
+    margin-top: 10px;
+    outline: 0;
+    background: rgb(255, 255, 255);
+    box-shadow: transparent 0px 0px 0px 1px inset;
+    padding: 0.6em;
+    border-radius: 14px;
+    border: 1px solid var(--blue);
+    color: black;
+  }
+  
+  .card__form button {
+    border: 0;
+    background:var(--blue);
+    color: #fff;
+    padding: 0.68em;
+    border-radius: 14px;
+  }
+  
+  .sign-up:hover {
+    opacity: 0.8;
+  } 
+
+  .card__ps {
+    padding-top: 10px;
+    font-size: 13px;
+    line-height: 18px;
+    color: #333;
+  }
+
+  .popup__close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .active-pop-up__call {
+    transform: translateY(0%) scale(100%);
+    background-color: rgba(0, 0, 0, 0.8);
+
+  }
+/*__________/\POP-UP CALL_________*/
+
+/*_________HOVER ANIMATION_________*/
+
+.nav-menu__link {
+    color: var(--blue);
+    position: relative;
+    padding: 16px 7px;
+    border-top: 2px solid rgba(255, 255, 255, 0);
+    border-bottom: 2px solid rgba(255, 255, 255, 0);
+    transition: padding .3s, border-color .3s;
+}
+
+@media screen and (min-width: 700px) {
+
+    .nav-menu__link:hover,
+    .nav-menu__link:focus {
+        padding: 5px 7px;
+        border-color: var(--blue);
+        outline: none;
+    }
+
+    .nav-menu__link::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        max-height: 0;
+        color: rgba(255, 255, 255, 0);
+        border-left: 2px solid rgba(255, 255, 255, 0);
+        content: attr(data-text);
+        transition: max-height .3s, border-color 0s;
+    }
+
+    .nav-menu__link::after {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        padding: 17.5px;
+        max-height: 0;
+        color: rgba(255, 255, 255, 0);
+        border-right: 2px solid rgba(255, 255, 255, 0);
+        content: attr(data-text);
+        transition: max-height .3s, border-color 0s;
+    }
+
+    .nav-menu__link:focus::before,
+    .nav-menu__link:hover::before,
+    .nav-menu__link:focus::after,
+    .nav-menu__link:hover::after {
+        max-height: 100%;
+        transition-delay: .28s;
+        border-color: var(--blue);
+    }
+
+    .contacts-list__link svg:hover {
+        transform: translateY(-0.30em);
+    }
+
+}
+
+/*_________/\HOVER ANIMATION_________*/
+
+/*_________BUTTON ANIMATION_________*/
 
 .section-button {
     color: var(--white);
@@ -133,8 +460,36 @@ h6 {
     line-height: 150%;
     letter-spacing: 0.02em;
     text-align: center;
-
+    transition: all 0.35s;
+    position: relative;
 }
+
+@media screen and (min-width: 700px) {
+    .section-button:hover {
+        transform: translateY(-0.30em);
+        color: var(--orange);
+    }
+
+    .section-button:hover::before {
+        opacity: 1;
+    }
+
+    .section-button::before {
+        width: 100%;
+        height: 1em;
+        position: absolute;
+        left: 0;
+        bottom: -1.35em;
+        background: radial-gradient(ellipse at center,
+                rgba(0, 0, 0, 0.35) 0%,
+                rgba(0, 0, 0, 0) 80%);
+        opacity: 0;
+        transition: all 0.65s;
+        content: "";
+    }
+}
+
+/*_________/\BUTTON ANIMATION_________*/
 
 .button__blue {
     background-color: var(--blue);
@@ -510,12 +865,13 @@ h6 {
     justify-content: space-between;
     gap: 45px;
 }
+
 .footer-contacts {
     max-width: 50%;
 }
 
 .callback-form {
-    background-color:rgba(170, 170, 170, 0.2);
+    background-color: rgba(170, 170, 170, 0.2);
     padding: 70px 40px;
     text-align: center;
     margin-top: 40px;
@@ -561,8 +917,8 @@ h6 {
 .options {
     display: none;
     position: absolute;
-   text-align: start;
-   padding-left: 30px;
+    text-align: start;
+    padding-left: 30px;
     top: 100%;
     left: 0;
     width: 100%;
@@ -599,7 +955,7 @@ h6 {
     letter-spacing: 0.02em;
     color: var(--text);
     position: relative;
-  text-align: center;
+    text-align: center;
 
 }
 
@@ -613,19 +969,20 @@ h6 {
 }
 
 .news-header {
-margin: 25px auto;
+    margin: 25px auto;
 }
 
 .news-list__img {
-    max-height: 364px ;
+    max-height: 364px;
 }
+
 .news__remark {
     background-color: rgba(170, 170, 170, 0.2);
     color: var(--blue);
     max-width: fit-content;
     margin: -40px auto 20px auto;
     display: flex;
-    
+
 }
 
 .news__theme {
@@ -645,7 +1002,7 @@ margin: 25px auto;
 }
 
 .news__theme:last-child {
-   display: flex;
+    display: flex;
 }
 
 .news__theses {
