@@ -37,7 +37,7 @@ const openPopUpCall = document.getElementById('open_popup');
 const closePopUp = document.querySelector('.popup__close');
 const popUpCall = document.querySelector('.popup-call');
 
-openPopUpCall.addEventListener('click', function(e){
+openPopUpCall.addEventListener('click',(e) => {
     e.preventDefault();
     popUpCall.classList.add('active-pop-up__call')
 })
