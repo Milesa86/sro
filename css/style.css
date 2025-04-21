@@ -134,13 +134,14 @@ body {
     }
 
     .contacts-list {
-        gap: 30px;
+        gap: 15px;
 
     }
 
     .nav-contacts {
-        padding-bottom: 10px;
+        padding-bottom: 5px;
         justify-content: space-around;
+        margin-bottom: 30px;
     }
 
 }
@@ -309,8 +310,8 @@ body {
 
 .card {
     margin: auto;
-    width: 340px;
-    height: 354px;
+    max-width: 340px;
+    max-height: 354px;
     padding: 0 15px;
     text-align: center;
     display: flex;
@@ -385,6 +386,94 @@ body {
 
   }
 /*__________/\POP-UP CALL_________*/
+
+/*________POP-UP INFORMATION_________*/
+
+.popup-information {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: transparent;
+    z-index: 15;
+    transform: translateY(-44.5%) scale(0);
+    transition: .6s ease-in-out;
+}
+.popup__container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.card {
+    margin: auto;
+    padding: 0 15px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    background: #fff;
+    border-radius: 20px;
+    position: relative;
+  } 
+
+  .section-sub-description {
+    max-width: 600px;
+    max-height: 600px;
+    padding: 30px;
+  }
+
+  .card__title {
+    font-size: 23px;
+    font-weight: 900;
+    color: var(--blue);
+  }
+  
+  .card__content {
+    font-size: 13px;
+    line-height: 18px;
+    color: var(--blue);
+  }
+  
+  
+  .card__button {
+    border: 0;
+    background:var(--blue);
+    color: #fff;
+    padding: 0.68em;
+    border-radius: 14px;
+  }
+  
+  .sign-up:hover {
+    opacity: 0.8;
+  } 
+
+  .card__ps {
+    padding-top: 10px;
+    font-size: 13px;
+    line-height: 18px;
+    color: #333;
+  }
+
+  .popup-information__close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .active-pop-up__information {
+    transform: translateY(0%) scale(100%);
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+/*__________/\POP-UP INFORMATION_________*/
+
 
 /*_________HOVER ANIMATION_________*/
 
@@ -716,7 +805,7 @@ body {
 }
 
 .pop-up {
-    display: none;
+    display: block;
 }
 
 .wrapper {

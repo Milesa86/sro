@@ -46,3 +46,22 @@ closePopUp.addEventListener('click', () => {
     popUpCall.classList.remove('active-pop-up__call')
 })
 
+const openPopUpLinks = document.querySelectorAll('.open-popup');
+const popups = document.querySelectorAll('.popup-information');
+const closeButtons = document.querySelectorAll('.popup-information__close');
+
+openPopUpLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const popupId = link.getAttribute('data-popup');
+        const popup = document.getElementById(popupId);
+        popup.classList.add('active-pop-up__information')
+    })
+
+})
+
+closeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        popups.forEach(popup => popup.classList.remove('active-pop-up__information'))
+    })
+})
