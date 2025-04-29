@@ -11,6 +11,8 @@
     href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
     rel="stylesheet" />
   <title>СРО</title>
+  <script src="https://api-maps.yandex.ru/2.1/?apikey=9bfaa99d-c1b8-4b36-9d12-108f4d53575b&lang=ru_RU" type="text/javascript">
+    </script>
 </head>
 
 <body>
@@ -95,7 +97,8 @@
                 <a href="#workers" class="nav-menu__link open-popup" data-popup="popup2">Вступить в НРС</a>
               </li>
               <li class="nav-menu__item">
-                <a href="#members" class="nav-menu__link open-popup" data-popup="popup3">Найти работу (для членов НРС)</a>
+                <a href="#members" class="nav-menu__link open-popup" data-popup="popup3">Найти работу (для членов
+                  НРС)</a>
               </li>
             </ul>
           </nav>
@@ -106,9 +109,10 @@
         </div>
       </div>
       <!-- POP-UP CALL -->
+      <div class="overlay" id="overlay"></div>
       <div class="popup-call">
         <div class="popup__container">
-          <div class="card">
+          <div class="card call-card">
             <span class="card__title">Заказать обратный звонок</span>
             <p class="card__content">Оставьте и мы свяжемся с Вами в ближайжее время
             </p>
@@ -119,11 +123,11 @@
               <p class="card__ps">
                 Отправляя заявку, Вы даете согласие на обработку персональных данных
               </p>
-              <div class="popup__close">
+              </div>
+          </div>
+          <div class="popup__close">
                 &#10006
               </div>
-            </div>
-          </div>
         </div>
 
       </div>
@@ -131,9 +135,6 @@
   </div>
 
   <main class="main-page">
-
-
-    <!--
     <section class="section section-about-us">
       <div class="container">
         <div class="about-us__remark section__remark">
@@ -165,10 +166,11 @@
         </div>
 
         <button class="section-button button__orange">
-          <a href="" class="button-link"> Посмотреть услуги</a>
+          <a href="#offer" class="button-link "> Посмотреть услуги</a>
         </button>
       </div>
     </section>
+
     <section class="section advantages">
       <div class="container section-advantages">
         <img class="advantages__img" src="assets/construction-silhouette.jpg" alt="строительство" />
@@ -211,7 +213,7 @@
             ответственность и честность, предлагая своим членам лучшие условия
             для успешной работы.
           </p>
-          <div class="advantages">
+          <div class="block-advantages">
             <div class="advantages__point">
               <p class="point__number">15</p>
               <p class="point__text">лет опыта</p>
@@ -229,7 +231,8 @@
         </div>
       </div>
     </section>
-    <section class="section-offer section">
+
+    <section class="section-offer section" id="offer">
       <div class="offer__remark section__remark">
         <svg width="80" height="78" viewBox="0 0 23 27" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g clip-path="url(#clip0_1_384)">
@@ -261,204 +264,24 @@
         профессионализм, ответственный подход и конкурентные условия
         сотрудничества.
       </div>
+      <div class="offer-wrapper">
+        <div class="offer-buttons">
+          <button class="offer-buttons__item active" data-offer="offer1">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink">
+              <path d="M0 0H36V36H0V0Z" fill="url(#pattern0_1_421)" />
+              <defs>
+                <pattern id="pattern0_1_421" patternContentUnits="objectBoundingBox" width="1" height="1">
+                  <use xlink:href="#image0_1_421" transform="scale(0.0138889)" />
+                </pattern>
+                <image id="image0_1_421" width="72" height="72" preserveAspectRatio="none"
+                  xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyFpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQyIDc5LjE2MDkyNCwgMjAxNy8wNy8xMy0wMTowNjozOSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDowNjM5MTgzNkI5NkExMUVDQjEwQjhBMTRDMDMzRDc2RCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDowNjM5MTgzN0I5NkExMUVDQjEwQjhBMTRDMDMzRDc2RCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjA2MzkxODM0Qjk2QTExRUNCMTBCOEExNEMwMzNENzZEIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjA2MzkxODM1Qjk2QTExRUNCMTBCOEExNEMwMzNENzZEIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+rwYecgAACQZJREFUeNrsnAlsFGUU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" />
+              </defs>
+            </svg>
 
-      <div class="offer-buttons">
-        <button class="offer-buttons__item active">
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink">
-            <path d="M0 0H36V36H0V0Z" fill="url(#pattern0_1_421)" />
-            <defs>
-              <pattern id="pattern0_1_421" patternContentUnits="objectBoundingBox" width="1" height="1">
-                <use xlink:href="#image0_1_421" transform="scale(0.0138889)" />
-              </pattern>
-              <image id="image0_1_421" width="72" height="72" preserveAspectRatio="none"
-                xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyFpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQyIDc5LjE2MDkyNCwgMjAxNy8wNy8xMy0wMTowNjozOSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDowNjM5MTgzNkI5NkExMUVDQjEwQjhBMTRDMDMzRDc2RCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDowNjM5MTgzN0I5NkExMUVDQjEwQjhBMTRDMDMzRDc2RCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjA2MzkxODM0Qjk2QTExRUNCMTBCOEExNEMwMzNENzZEIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjA2MzkxODM1Qjk2QTExRUNCMTBCOEExNEMwMzNENzZEIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+rwYecgAACQZJREFUeNrsnAlsFGUU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" />
-            </defs>
-          </svg>
-
-          Для компаний
-        </button>
-        <button class="offer-buttons__item">
-          <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink">
-            <path d="M0 0H34V34H0V0Z" fill="url(#pattern0_1_426)" />
-            <defs>
-              <pattern id="pattern0_1_426" patternContentUnits="objectBoundingBox" width="1" height="1">
-                <use xlink:href="#image0_1_426" transform="scale(0.0147059)" />
-              </pattern>
-              <image id="image0_1_426" width="68" height="68" preserveAspectRatio="none"
-                xlink:href="data:image/png;base64,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" />
-            </defs>
-          </svg>
-
-          Для членов НРС
-        </button>
-        <button class="offer-buttons__item">
-          <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink">
-            <path d="M0 0H34V34H0V0Z" fill="url(#pattern0_1_430)" />
-            <defs>
-              <pattern id="pattern0_1_430" patternContentUnits="objectBoundingBox" width="1" height="1">
-                <use xlink:href="#image0_1_430" transform="scale(0.015625)" />
-              </pattern>
-              <image id="image0_1_430" width="64" height="64" preserveAspectRatio="none"
-                xlink:href="data:image/png;base64,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" />
-            </defs>
-          </svg>
-
-          Для кандидатов
-        </button>
-      </div>
-      <article class="article-company article active" id="company">
-        <div class="wrapper">
-          <div class="company__description">
-            <div class="company__remark section__remark">
-              <svg width="25" height="25" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink">
-                <path d="M0 0H36V36H0V0Z" fill="url(#pattern0_1_421)" />
-                <defs>
-                  <pattern id="pattern0_1_421" patternContentUnits="objectBoundingBox" width="1" height="1">
-                    <use xlink:href="#image0_1_421" transform="scale(0.0138889)" />
-                  </pattern>
-                  <image id="image0_1_421" width="72" height="72" preserveAspectRatio="none"
-                    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyFpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQyIDc5LjE2MDkyNCwgMjAxNy8wNy8xMy0wMTowNjozOSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDowNjM5MTgzNkI5NkExMUVDQjEwQjhBMTRDMDMzRDc2RCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDowNjM5MTgzN0I5NkExMUVDQjEwQjhBMTRDMDMzRDc2RCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjA2MzkxODM0Qjk2QTExRUNCMTBCOEExNEMwMzNENzZEIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjA2MzkxODM1Qjk2QTExRUNCMTBCOEExNEMwMzNENzZEIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+rwYecgAACQZJREFUeNrsnAlsFGUU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" />
-                </defs>
-              </svg>
-
-              <p class="remark__text">Стань членом СРО</p>
-            </div>
-            <h3 class="section-header">Для компаний</h3>
-            <p class="description__text">
-              Вступление в СРО - обязательное условие для работы на объектах
-              стоимостью более 10 млн. рублей.
-            <p class="description__text">
-              Мы поможем вашей компании
-              оформить допуск в кратчайшие сроки чтобы вы могли сосредоточится
-              на бизнесе, а не на бумагах
-            </p>
-            </p>
-            <button class="section-button button__orange">
-              <a href="" class="button-link">Узнать больше</a>
-            </button>
-          </div>
-          <img src="assets/engineering-concept-with-plans.jpg" alt="строительная компания"
-            class="article-company__img" />
-        </div>
-
-
-      </article> -->
-    <div class="popup-information" id="popup1">
-      <div class="popup__container">
-        <div class="section-sub-description card">
-          <h4 class="card__title">Почему это важно?</h4>
-          <div class="card__content">
-            Без участия в СРО вы теряете доступ к крупным заказам и рискуете
-            штрафами. Мы обеспечим вас всеми необходимыми документами
-          </div>
-          <h4 class="card__title">Что вы получите?</h4>
-          <div class="card__content">
-            <ul class="sub-description__item__list">
-              <li>Официальный допуск СРО</li>
-              <li>Консультационное сопровождение</li>
-              <li>Возможность участия в госзакупкахи тендерах</li>
-            </ul>
-          </div>
-          <h4 class="card__title">Как это работает?</h4>
-          <div class="card__content">
-            <ul class="sub-description__item__list">
-              <li>Оставьте заявку</li>
-              <li>Мы подберем оптимальный вариант и подготовоим документы</li>
-              <li>Станьте членом СРО и начинайте работать!
-              </li>
-            </ul>
-          </div>
-          <button class="card__button">
-            Оставить заявку на вступление в СРО
+            Для компаний
           </button>
-          <div class="popup-information__close">
-            &#10006
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!--  <article class="article article-workers" id="workers">
-        <div class="wrapper">
-          <div class="company__description">
-            <div class="company__remark section__remark">
-              <svg width="25" height="25" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink">
-                <path d="M0 0H34V34H0V0Z" fill="url(#pattern0_1_430)" />
-                <defs>
-                  <pattern id="pattern0_1_430" patternContentUnits="objectBoundingBox" width="1" height="1">
-                    <use xlink:href="#image0_1_430" transform="scale(0.015625)" />
-                  </pattern>
-                  <image id="image0_1_430" width="64" height="64" preserveAspectRatio="none"
-                    xlink:href="data:image/png;base64,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" />
-                </defs>
-              </svg>
-              <p class="remark__text">Стань частью НРС</p>
-            </div>
-            <h3 class="section-header">
-              Для кандидатов
-            </h3>
-            <p class="description__text">
-
-              Национальный реестр специалистов - это ваш пропуск в мир
-              профессионального строительства. </p>
-            <p class="description__text">Мы поможем вам собрать документы,
-              пройти проверку и стать сертифицированным специалистом НРС.</p>
-
-            <button class="section-button button__orange">
-              <a href="" class="button-link">Узнать больше</a>
-            </button>
-          </div>
-          <img src="assets/medium-shot-man-with-helmet-schematics.jpg" class="article-company__img" alt="строитель">
-        </div>
-
-      </article> -->
-    <div class="popup-information" id="popup2">
-      <div class="popup__container">
-        <div class="section-sub-description card">
-        <h4 class="card__title">Кому это нужно?</h4>
-        <div class="card__content">
-          Инженерам, прорабам и другим специалистам с высшим образованием и
-          опытом работы от 3 лет
-        </div>
-        <h4 class="card__title">Что вы получите?</h4>
-        <div class="card__content">
-          <ul class="sub-description__item__list">
-            <li>Включение в реестр НРС</li>
-            <li>Консультацию и помощь в трудоустройстве</li>
-            <li>Повышение конкурентоспособности на рынке труда</li>
-          </ul>
-        </div>
-        <h4 class="card__title">Требования</h4>
-        <div class="card__content">
-          <ul class="sub-description__item__list">
-            <li>Высшее образование в строительной сфере</li>
-            <li>
-              Опыт работы не менее 5 лет в обасти строительства и на
-              инженерных должностях не менее 3 лет
-            </li>
-            <li>Прохождение независимой оценки квалификации</li>
-            <li>Отсутствие судимости</li>
-          </ul>
-        </div>
-        <button class="card__button">
-          Подать заявку на вступление в НРС
-        </button>
-        <div class="popup-information__close">
-          &#10006
-        </div>
-      </div>
-      </div>
-      </div>
-<!--
-    <article class="article article-members" id="members">
-      <div class="wrapper">
-        <div class="company__description">
-          <div class="company__remark section__remark">
+          <button class="offer-buttons__item" data-offer="offer2">
             <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"
               xmlns:xlink="http://www.w3.org/1999/xlink">
               <path d="M0 0H34V34H0V0Z" fill="url(#pattern0_1_426)" />
@@ -471,58 +294,253 @@
               </defs>
             </svg>
 
-            <p class="remark__text">Найди работу</p>
-          </div>
-          <h3 class="section-header">
             Для членов НРС
-          </h3>
-          <p class="description__text">
-            Мы сотрудничаем со строительными компаниями региона и поможем вам
-            найти вакансию, соответствующую вашему опыту и амбициям.</p>
-          <p class="description__text">
-            Зарегистрируйтесь в нашей базе и получайте предложения от
-            работодателей
-          </p>
-          <button class="section-button button__orange">
-            <a href="" class="button-link">Узнать больше</a>
+          </button>
+          <button class="offer-buttons__item" data-offer="offer3">
+            <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink">
+              <path d="M0 0H34V34H0V0Z" fill="url(#pattern0_1_430)" />
+              <defs>
+                <pattern id="pattern0_1_430" patternContentUnits="objectBoundingBox" width="1" height="1">
+                  <use xlink:href="#image0_1_430" transform="scale(0.015625)" />
+                </pattern>
+                <image id="image0_1_430" width="64" height="64" preserveAspectRatio="none"
+                  xlink:href="data:image/png;base64,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" />
+              </defs>
+            </svg>
+
+            Для кандидатов
           </button>
         </div>
-        <img src="assets/low-angle-old-man-with-helmet-pointing-something.jpg" class="article-company__img"
-          alt="строитель">
-      </div>
+        <div class="card-wrapper">
+          <!-- ДЛЯ КОМПАНИИ-->
+          <article class="article-company article active" id="offer1">
+            <div class="wrapper">
+              <div class="company__description">
+                <div class="company__remark section__remark">
+                  <svg width="25" height="25" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <path d="M0 0H36V36H0V0Z" fill="url(#pattern0_1_421)" />
+                    <defs>
+                      <pattern id="pattern0_1_421" patternContentUnits="objectBoundingBox" width="1" height="1">
+                        <use xlink:href="#image0_1_421" transform="scale(0.0138889)" />
+                      </pattern>
+                      <image id="image0_1_421" width="72" height="72" preserveAspectRatio="none"
+                        xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyFpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQyIDc5LjE2MDkyNCwgMjAxNy8wNy8xMy0wMTowNjozOSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDowNjM5MTgzNkI5NkExMUVDQjEwQjhBMTRDMDMzRDc2RCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDowNjM5MTgzN0I5NkExMUVDQjEwQjhBMTRDMDMzRDc2RCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjA2MzkxODM0Qjk2QTExRUNCMTBCOEExNEMwMzNENzZEIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjA2MzkxODM1Qjk2QTExRUNCMTBCOEExNEMwMzNENzZEIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+rwYecgAACQZJREFUeNrsnAlsFGUU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" />
+                    </defs>
+                  </svg>
 
-    </article> -->
-    <div class="popup-information" id="popup3">
-      <div class="popup__container">
-       <div class="section-sub-description card">
-      <h4 class="card__title">Как это работет?</h4>
-      <div class="card__content">
-        <ul class="sub-description__item__list">
-          <li>Заполните анкету</li>
-          <li>Укажите опыт и предпочтения</li>
-          <li>Получайте предложения о работе напрямую</li>
-        </ul>
+                  <p class="remark__text">Стань членом СРО</p>
+                </div>
+                <h3 class="section-header">Для компаний</h3>
+                <p class="description__text">
+                  Вступление в СРО - обязательное условие для работы на объектах
+                  стоимостью более 10 млн. рублей.
+                <p class="description__text">
+                  Мы поможем вашей компании
+                  оформить допуск в кратчайшие сроки чтобы вы могли сосредоточится
+                  на бизнесе, а не на бумагах
+                </p>
+                </p>
+                <button class="section-button button__orange">
+                  <a href="" class="button-link open-popup" data-popup="popup1">Узнать больше</a>
+                </button>
+              </div>
+              <img src="assets/engineering-concept-with-plans.jpg" alt="строительная компания"
+                class="article-company__img" />
+            </div>
+          </article>
+
+          <!--POPUP 1-->
+
+          <div class="popup-information" id="popup1">
+            <div class="popup__container">
+              <div class="section-sub-description card">
+                <h4 class="card__title">Почему это важно?</h4>
+                <div class="card__content">
+                  Без участия в СРО вы теряете доступ к крупным заказам и рискуете
+                  штрафами. Мы обеспечим вас всеми необходимыми документами
+                </div>
+                <h4 class="card__title">Что вы получите?</h4>
+                <div class="card__content">
+                  <ul class="sub-description__item__list">
+                    <li>Официальный допуск СРО</li>
+                    <li>Консультационное сопровождение</li>
+                    <li>Возможность участия в госзакупкахи тендерах</li>
+                  </ul>
+                </div>
+                <h4 class="card__title">Как это работает?</h4>
+                <div class="card__content">
+                  <ul class="sub-description__item__list">
+                    <li>Оставьте заявку</li>
+                    <li>Мы подберем оптимальный вариант и подготовоим документы</li>
+                    <li>Станьте членом СРО и начинайте работать!
+                    </li>
+                  </ul>
+                </div>
+                <button class="card__button">
+                  <a href="#callback" class="card__button">Оставить заявку на вступление в СРО</a>
+                  
+                </button>
+                <div class="popup-information__close">
+                  &#10006
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ДЛЯ КАНДИДАТОВ-->
+
+          <article class="article article-workers" id="offer3">
+            <div class="wrapper">
+              <div class="company__description">
+                <div class="company__remark section__remark">
+                  <svg width="25" height="25" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <path d="M0 0H34V34H0V0Z" fill="url(#pattern0_1_430)" />
+                    <defs>
+                      <pattern id="pattern0_1_430" patternContentUnits="objectBoundingBox" width="1" height="1">
+                        <use xlink:href="#image0_1_430" transform="scale(0.015625)" />
+                      </pattern>
+                      <image id="image0_1_430" width="64" height="64" preserveAspectRatio="none"
+                        xlink:href="data:image/png;base64,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" />
+                    </defs>
+                  </svg>
+                  <p class="remark__text">Стань частью НРС</p>
+                </div>
+                <h3 class="section-header">
+                  Для кандидатов
+                </h3>
+                <p class="description__text">
+
+                  Национальный реестр специалистов - это ваш пропуск в мир
+                  профессионального строительства. </p>
+                <p class="description__text">Мы поможем вам собрать документы,
+                  пройти проверку и стать сертифицированным специалистом НРС.</p>
+
+                <button class="section-button button__orange">
+                  <a href="" class="button-link open-popup" data-popup="popup2">Узнать больше</a>
+                </button>
+              </div>
+              <img src="assets/medium-shot-man-with-helmet-schematics.jpg" class="article-company__img" alt="строитель">
+            </div>
+          </article>
+
+          <!--POPUP 2-->
+
+          <div class="popup-information" id="popup2">
+            <div class="popup__container">
+              <div class="section-sub-description card">
+                <h4 class="card__title">Кому это нужно?</h4>
+                <div class="card__content">
+                  Инженерам, прорабам и другим специалистам с высшим образованием и
+                  опытом работы от 3 лет
+                </div>
+                <h4 class="card__title">Что вы получите?</h4>
+                <div class="card__content">
+                  <ul class="sub-description__item__list">
+                    <li>Включение в реестр НРС</li>
+                    <li>Консультацию и помощь в трудоустройстве</li>
+                    <li>Повышение конкурентоспособности на рынке труда</li>
+                  </ul>
+                </div>
+                <h4 class="card__title">Требования</h4>
+                <div class="card__content">
+                  <ul class="sub-description__item__list">
+                    <li>Высшее образование в строительной сфере</li>
+                    <li>
+                      Опыт работы не менее 5 лет в обасти строительства и на
+                      инженерных должностях не менее 3 лет
+                    </li>
+                    <li>Прохождение независимой оценки квалификации</li>
+                    <li>Отсутствие судимости</li>
+                  </ul>
+                </div>
+                <button class="card__button">
+                  <a href="#callback" class="card__button">Подать заявку на вступление в НРС</a>
+                  
+                </button>
+                <div class="popup-information__close">
+                  &#10006
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ДЛЯ ЧЛЕНОВ НСР-->
+
+          <article class="article article-members" id="offer2">
+            <div class="wrapper">
+              <div class="company__description">
+                <div class="company__remark section__remark">
+                  <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <path d="M0 0H34V34H0V0Z" fill="url(#pattern0_1_426)" />
+                    <defs>
+                      <pattern id="pattern0_1_426" patternContentUnits="objectBoundingBox" width="1" height="1">
+                        <use xlink:href="#image0_1_426" transform="scale(0.0147059)" />
+                      </pattern>
+                      <image id="image0_1_426" width="68" height="68" preserveAspectRatio="none"
+                        xlink:href="data:image/png;base64,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" />
+                    </defs>
+                  </svg>
+
+                  <p class="remark__text">Найди работу</p>
+                </div>
+                <h3 class="section-header">
+                  Для членов НРС
+                </h3>
+                <p class="description__text">
+                  Мы сотрудничаем со строительными компаниями региона и поможем вам
+                  найти вакансию, соответствующую вашему опыту и амбициям.</p>
+                <p class="description__text">
+                  Зарегистрируйтесь в нашей базе и получайте предложения от
+                  работодателей
+                </p>
+                <button class="section-button button__orange">
+                  <a href="" class="button-link open-popup" data-popup="popup3">Узнать больше</a>
+                </button>
+              </div>
+              <img src="assets/low-angle-old-man-with-helmet-pointing-something.jpg" class="article-company__img"
+                alt="строитель">
+            </div>
+          </article>
+
+          <!--POPUP 3-->
+
+          <div class="popup-information" id="popup3">
+            <div class="popup__container">
+              <div class="section-sub-description card">
+                <h4 class="card__title">Как это работет?</h4>
+                <div class="card__content">
+                  <ul class="sub-description__item__list">
+                    <li>Заполните анкету</li>
+                    <li>Укажите опыт и предпочтения</li>
+                    <li>Получайте предложения о работе напрямую</li>
+                  </ul>
+                </div>
+                <h4 class="card__title">Преимущества</h4>
+                <div class="card__content">
+                  <ul class="sub-description__item__list">
+                    <li>Доступ к вакансиям от проверенных компаний</li>
+                    <li>Бесплатная регистрация</li>
+                    <li>Конфиденциальность данных</li>
+                  </ul>
+                </div>
+                <button class="card__button">
+                  <a href="#callback" class="card__button">Зарегистрироваться для поиска работы</a>
+                 
+                </button>
+                <div class="popup-information__close">
+                  &#10006
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <h4 class="card__title">Преимущества</h4>
-      <div class="card__content">
-        <ul class="sub-description__item__list">
-          <li>Доступ к вакансиям от проверенных компаний</li>
-          <li>Бесплатная регистрация</li>
-          <li>Конфиденциальность данных</li>
-        </ul>
-      </div>
-      <button class="card__button">
-        Зарегистрироваться для поиска работы
-      </button>
-      <div class="popup-information__close">
-        &#10006
-      </div>
-    </div> 
-      </div>
-      
-    </div>
-    
     </section>
+
     <section class="section-value section">
       <div class="container section-value">
         <img src="assets/partnership.jpg" class="value__img" alt="Сотрудничество">
@@ -629,6 +647,7 @@
         </div>
 
     </section>
+
     <section class="section-prices section">
       <div class="price__remark section__remark">
         <svg width="40" height="40" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -657,198 +676,312 @@
         </div>
 
       </div>
-      <div class="description__item">
-        <div class="price_plan">
-          <h3 class="price_plan__header">
-            Вступление в СРО
-          </h3>
-          <div class="price_plan__list">
-            <p class="price__value">
-              <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_1_763)">
-                  <path
-                    d="M17.9561 9.47803C17.9561 4.79745 14.1586 1 9.47803 1C4.79745 1 1 4.79745 1 9.47803C1 14.1586 4.79745 17.9561 9.47803 17.9561C14.1586 17.9561 17.9561 14.1586 17.9561 9.47803Z"
-                    stroke="#FFB342" stroke-width="1.5" stroke-miterlimit="10" />
-                  <path d="M13.717 5.9458L7.78242 13.0108L5.23901 10.1848" stroke="#FFB342" stroke-width="1.5"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                </g>
-                <defs>
-                  <clipPath id="clip0_1_763">
-                    <rect width="19" height="19" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
+      <div class="price-container">
+        <div class="description__item">
+          <div class="price_plan">
+            <h3 class="price_plan__header">
+              Вступление в СРО
+            </h3>
+            <div class="price_plan__list">
+              <p class="price__value">
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_1_763)">
+                    <path
+                      d="M17.9561 9.47803C17.9561 4.79745 14.1586 1 9.47803 1C4.79745 1 1 4.79745 1 9.47803C1 14.1586 4.79745 17.9561 9.47803 17.9561C14.1586 17.9561 17.9561 14.1586 17.9561 9.47803Z"
+                      stroke="#FFB342" stroke-width="1.5" stroke-miterlimit="10" />
+                    <path d="M13.717 5.9458L7.78242 13.0108L5.23901 10.1848" stroke="#FFB342" stroke-width="1.5"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_1_763">
+                      <rect width="19" height="19" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
 
-              Требуется оплатить только обязательный взносы
-            </p>
-            <p class="price__value">
-              <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_1_763)">
-                  <path
-                    d="M17.9561 9.47803C17.9561 4.79745 14.1586 1 9.47803 1C4.79745 1 1 4.79745 1 9.47803C1 14.1586 4.79745 17.9561 9.47803 17.9561C14.1586 17.9561 17.9561 14.1586 17.9561 9.47803Z"
-                    stroke="#FFB342" stroke-width="1.5" stroke-miterlimit="10" />
-                  <path d="M13.717 5.9458L7.78242 13.0108L5.23901 10.1848" stroke="#FFB342" stroke-width="1.5"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                </g>
-                <defs>
-                  <clipPath id="clip0_1_763">
-                    <rect width="19" height="19" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
-              Бесплатное оформление документов
-            </p>
-            <p class="price__value">
-              <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_1_763)">
-                  <path
-                    d="M17.9561 9.47803C17.9561 4.79745 14.1586 1 9.47803 1C4.79745 1 1 4.79745 1 9.47803C1 14.1586 4.79745 17.9561 9.47803 17.9561C14.1586 17.9561 17.9561 14.1586 17.9561 9.47803Z"
-                    stroke="#FFB342" stroke-width="1.5" stroke-miterlimit="10" />
-                  <path d="M13.717 5.9458L7.78242 13.0108L5.23901 10.1848" stroke="#FFB342" stroke-width="1.5"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                </g>
-                <defs>
-                  <clipPath id="clip0_1_763">
-                    <rect width="19" height="19" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
-              Помощь с специалистами НРС
-            </p>
+                Требуется оплатить только обязательный взносы
+              </p>
+              <p class="price__value">
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_1_763)">
+                    <path
+                      d="M17.9561 9.47803C17.9561 4.79745 14.1586 1 9.47803 1C4.79745 1 1 4.79745 1 9.47803C1 14.1586 4.79745 17.9561 9.47803 17.9561C14.1586 17.9561 17.9561 14.1586 17.9561 9.47803Z"
+                      stroke="#FFB342" stroke-width="1.5" stroke-miterlimit="10" />
+                    <path d="M13.717 5.9458L7.78242 13.0108L5.23901 10.1848" stroke="#FFB342" stroke-width="1.5"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_1_763">
+                      <rect width="19" height="19" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+                Бесплатное оформление документов
+              </p>
+              <p class="price__value">
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_1_763)">
+                    <path
+                      d="M17.9561 9.47803C17.9561 4.79745 14.1586 1 9.47803 1C4.79745 1 1 4.79745 1 9.47803C1 14.1586 4.79745 17.9561 9.47803 17.9561C14.1586 17.9561 17.9561 14.1586 17.9561 9.47803Z"
+                      stroke="#FFB342" stroke-width="1.5" stroke-miterlimit="10" />
+                    <path d="M13.717 5.9458L7.78242 13.0108L5.23901 10.1848" stroke="#FFB342" stroke-width="1.5"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_1_763">
+                      <rect width="19" height="19" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+                Помощь с специалистами НРС
+              </p>
+            </div>
+
+            <button class="section-button button__orange">
+              <a href="#callback" class="button-link">Узнать стоимость</a>
+            </button>
+
+          </div>
+          <div class="price_plan">
+            <h3 class="price_plan__header">
+              Включение в НРС
+            </h3>
+            <div class="price_plan__list">
+              <p class="price__value">
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_1_763)">
+                    <path
+                      d="M17.9561 9.47803C17.9561 4.79745 14.1586 1 9.47803 1C4.79745 1 1 4.79745 1 9.47803C1 14.1586 4.79745 17.9561 9.47803 17.9561C14.1586 17.9561 17.9561 14.1586 17.9561 9.47803Z"
+                      stroke="#FFB342" stroke-width="1.5" stroke-miterlimit="10" />
+                    <path d="M13.717 5.9458L7.78242 13.0108L5.23901 10.1848" stroke="#FFB342" stroke-width="1.5"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_1_763">
+                      <rect width="19" height="19" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+                Помощь в сдаче экзамена НОК
+              </p>
+              <p class="price__value">
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_1_763)">
+                    <path
+                      d="M17.9561 9.47803C17.9561 4.79745 14.1586 1 9.47803 1C4.79745 1 1 4.79745 1 9.47803C1 14.1586 4.79745 17.9561 9.47803 17.9561C14.1586 17.9561 17.9561 14.1586 17.9561 9.47803Z"
+                      stroke="#FFB342" stroke-width="1.5" stroke-miterlimit="10" />
+                    <path d="M13.717 5.9458L7.78242 13.0108L5.23901 10.1848" stroke="#FFB342" stroke-width="1.5"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_1_763">
+                      <rect width="19" height="19" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+                Различные варианты предподготовки
+              </p>
+              <p class="price__value">
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_1_763)">
+                    <path
+                      d="M17.9561 9.47803C17.9561 4.79745 14.1586 1 9.47803 1C4.79745 1 1 4.79745 1 9.47803C1 14.1586 4.79745 17.9561 9.47803 17.9561C14.1586 17.9561 17.9561 14.1586 17.9561 9.47803Z"
+                      stroke="#FFB342" stroke-width="1.5" stroke-miterlimit="10" />
+                    <path d="M13.717 5.9458L7.78242 13.0108L5.23901 10.1848" stroke="#FFB342" stroke-width="1.5"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_1_763">
+                      <rect width="19" height="19" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+                Аудит и подготовка документов для внесения специалистов в НРС
+              </p>
+            </div>
+
+            <button class="section-button button__orange">
+              <a href="#callback" class="button-link">Узнать стоимость</a>
+            </button>
           </div>
 
-          <button class="section-button button__orange">
-            <a href="" class="button-link">Узнать стоимость</a>
-          </button>
-
-        </div>
-        <div class="price_plan">
-          <h3 class="price_plan__header">
-            Включение в НРС
-          </h3>
-          <div class="price_plan__list">
-            <p class="price__value">
-              <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_1_763)">
-                  <path
-                    d="M17.9561 9.47803C17.9561 4.79745 14.1586 1 9.47803 1C4.79745 1 1 4.79745 1 9.47803C1 14.1586 4.79745 17.9561 9.47803 17.9561C14.1586 17.9561 17.9561 14.1586 17.9561 9.47803Z"
-                    stroke="#FFB342" stroke-width="1.5" stroke-miterlimit="10" />
-                  <path d="M13.717 5.9458L7.78242 13.0108L5.23901 10.1848" stroke="#FFB342" stroke-width="1.5"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                </g>
-                <defs>
-                  <clipPath id="clip0_1_763">
-                    <rect width="19" height="19" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
-              Помощь в сдаче экзамена НОК
-            </p>
-            <p class="price__value">
-              <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_1_763)">
-                  <path
-                    d="M17.9561 9.47803C17.9561 4.79745 14.1586 1 9.47803 1C4.79745 1 1 4.79745 1 9.47803C1 14.1586 4.79745 17.9561 9.47803 17.9561C14.1586 17.9561 17.9561 14.1586 17.9561 9.47803Z"
-                    stroke="#FFB342" stroke-width="1.5" stroke-miterlimit="10" />
-                  <path d="M13.717 5.9458L7.78242 13.0108L5.23901 10.1848" stroke="#FFB342" stroke-width="1.5"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                </g>
-                <defs>
-                  <clipPath id="clip0_1_763">
-                    <rect width="19" height="19" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
-              Различные варианты предподготовки
-            </p>
-            <p class="price__value">
-              <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_1_763)">
-                  <path
-                    d="M17.9561 9.47803C17.9561 4.79745 14.1586 1 9.47803 1C4.79745 1 1 4.79745 1 9.47803C1 14.1586 4.79745 17.9561 9.47803 17.9561C14.1586 17.9561 17.9561 14.1586 17.9561 9.47803Z"
-                    stroke="#FFB342" stroke-width="1.5" stroke-miterlimit="10" />
-                  <path d="M13.717 5.9458L7.78242 13.0108L5.23901 10.1848" stroke="#FFB342" stroke-width="1.5"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                </g>
-                <defs>
-                  <clipPath id="clip0_1_763">
-                    <rect width="19" height="19" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
-              Аудит и подготовка документов для внесения специалистов в НРС
-            </p>
+          <div class="price_plan">
+            <h3 class="price_plan__header">
+              Регистрация в базе вакансий
+            </h3>
+            <div class="price_plan__list">
+              <p class="price__value">
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_1_763)">
+                    <path
+                      d="M17.9561 9.47803C17.9561 4.79745 14.1586 1 9.47803 1C4.79745 1 1 4.79745 1 9.47803C1 14.1586 4.79745 17.9561 9.47803 17.9561C14.1586 17.9561 17.9561 14.1586 17.9561 9.47803Z"
+                      stroke="#FFB342" stroke-width="1.5" stroke-miterlimit="10" />
+                    <path d="M13.717 5.9458L7.78242 13.0108L5.23901 10.1848" stroke="#FFB342" stroke-width="1.5"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_1_763">
+                      <rect width="19" height="19" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+                Требуется оплатить только обязательный взносы
+              </p>
+              <p class="price__value">
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_1_763)">
+                    <path
+                      d="M17.9561 9.47803C17.9561 4.79745 14.1586 1 9.47803 1C4.79745 1 1 4.79745 1 9.47803C1 14.1586 4.79745 17.9561 9.47803 17.9561C14.1586 17.9561 17.9561 14.1586 17.9561 9.47803Z"
+                      stroke="#FFB342" stroke-width="1.5" stroke-miterlimit="10" />
+                    <path d="M13.717 5.9458L7.78242 13.0108L5.23901 10.1848" stroke="#FFB342" stroke-width="1.5"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_1_763">
+                      <rect width="19" height="19" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+                Оформление документов
+              </p>
+              <p class="price__value">
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_1_763)">
+                    <path
+                      d="M17.9561 9.47803C17.9561 4.79745 14.1586 1 9.47803 1C4.79745 1 1 4.79745 1 9.47803C1 14.1586 4.79745 17.9561 9.47803 17.9561C14.1586 17.9561 17.9561 14.1586 17.9561 9.47803Z"
+                      stroke="#FFB342" stroke-width="1.5" stroke-miterlimit="10" />
+                    <path d="M13.717 5.9458L7.78242 13.0108L5.23901 10.1848" stroke="#FFB342" stroke-width="1.5"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_1_763">
+                      <rect width="19" height="19" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+                Помощь с НРС
+              </p>
+            </div>
+            <button class="section-button button__orange">
+              <a href="#callback" class="button-link">Узнать стоимость</a>
+            </button>
           </div>
-
-          <button class="section-button button__orange">
-            <a href="" class="button-link">Узнать стоимость</a>
+        </div>
+        <div class="arrows">
+          <button class="scroll-left">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 512 512" fill="none">
+              <path d="M175 419L338 256L175 93" stroke="#1c2752" stroke-width="24" stroke-linecap="round" />
+            </svg>
+          </button>
+          <button class="scroll-right">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 512 512" fill="none">
+              <path d="M175 419L338 256L175 93" stroke="#1c2752" stroke-width="24" stroke-linecap="round" />
+            </svg>
           </button>
         </div>
 
-        <div class="price_plan">
-          <h3 class="price_plan__header">
-            Регистрация в базе вакансий
-          </h3>
-          <div class="price_plan__list">
-            <p class="price__value">
-              <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_1_763)">
-                  <path
-                    d="M17.9561 9.47803C17.9561 4.79745 14.1586 1 9.47803 1C4.79745 1 1 4.79745 1 9.47803C1 14.1586 4.79745 17.9561 9.47803 17.9561C14.1586 17.9561 17.9561 14.1586 17.9561 9.47803Z"
-                    stroke="#FFB342" stroke-width="1.5" stroke-miterlimit="10" />
-                  <path d="M13.717 5.9458L7.78242 13.0108L5.23901 10.1848" stroke="#FFB342" stroke-width="1.5"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                </g>
-                <defs>
-                  <clipPath id="clip0_1_763">
-                    <rect width="19" height="19" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
-              Требуется оплатить только обязательный взносы
-            </p>
-            <p class="price__value">
-              <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_1_763)">
-                  <path
-                    d="M17.9561 9.47803C17.9561 4.79745 14.1586 1 9.47803 1C4.79745 1 1 4.79745 1 9.47803C1 14.1586 4.79745 17.9561 9.47803 17.9561C14.1586 17.9561 17.9561 14.1586 17.9561 9.47803Z"
-                    stroke="#FFB342" stroke-width="1.5" stroke-miterlimit="10" />
-                  <path d="M13.717 5.9458L7.78242 13.0108L5.23901 10.1848" stroke="#FFB342" stroke-width="1.5"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                </g>
-                <defs>
-                  <clipPath id="clip0_1_763">
-                    <rect width="19" height="19" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
-              Оформление документов
-            </p>
-            <p class="price__value">
-              <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_1_763)">
-                  <path
-                    d="M17.9561 9.47803C17.9561 4.79745 14.1586 1 9.47803 1C4.79745 1 1 4.79745 1 9.47803C1 14.1586 4.79745 17.9561 9.47803 17.9561C14.1586 17.9561 17.9561 14.1586 17.9561 9.47803Z"
-                    stroke="#FFB342" stroke-width="1.5" stroke-miterlimit="10" />
-                  <path d="M13.717 5.9458L7.78242 13.0108L5.23901 10.1848" stroke="#FFB342" stroke-width="1.5"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                </g>
-                <defs>
-                  <clipPath id="clip0_1_763">
-                    <rect width="19" height="19" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
-              Помощь с НРС
-            </p>
-          </div>
-          <button class="section-button button__orange">
-            <a href="" class="button-link">Узнать стоимость</a>
-          </button>
-        </div>
       </div>
+
+
+
+
     </section>
+
     <section class="section-news section">
+ <!--НОВОСТЬ №1 - popup-->
+
+        <div class="popup-information news-popup" id="popup4">
+          <div class="popup__container">
+            <div class="card news-card">
+              <h3 class="card__title news-card__title">Изменения в законодательстве о саморегулировании</h3>
+              <p class="card__content">
+                В современном мире саморегулирование становится важным инструментом обеспечения качества
+                профессиональной деятельности и защиты интересов потребителей. Одним из ключевых нормативных актов,
+                регулирующих эту сферу, является Федеральный закон №372-ФЗ "О саморегулируемых организациях" . Этот
+                закон определяет основные принципы создания и функционирования саморегулируемых организаций (СРО), а
+                также устанавливает требования к их деятельности. Рассмотрим основные изменения, внесенные в
+                законодательство о саморегулировании, и их значение для профессиональных сообществ.
+              </p>
+              <p class="card__content">
+                Что такое саморегулируемые организации?
+                Саморегулируемая организация (СРО) — это объединение юридических лиц или индивидуальных
+                предпринимателей, созданное для координации их профессиональной деятельности, установления стандартов и
+                контроля за их соблюдением. СРО действуют в различных сферах, таких как строительство, проектирование,
+                энергетика и другие отрасли. Их цель — повышение качества услуг и продукции, защита прав потребителей, а
+                также обеспечение безопасности выполняемых работ.
+              </p>
+              <p class="card__content">
+                Основные положения Федерального закона №372-ФЗ
+                Федеральный закон №372-ФЗ устанавливает правовые основы создания и функционирования СРО. Ключевые
+                положения закона включают:
+              </p>
+              <p class="card__content">
+                Требования к созданию СРО : Закон четко определяет условия, при которых профессиональное объединение
+                может получить статус СРО. Это включает наличие минимального количества участников, разработку
+                внутренних стандартов и создание компенсационного фонда.
+                Контроль за деятельностью СРО : Закон предусматривает государственный надзор за деятельностью
+                саморегулируемых организаций. Это необходимо для предотвращения злоупотреблений и обеспечения
+                прозрачности.
+                Компенсационный фонд : Одним из важнейших требований является формирование компенсационного фонда,
+                который используется для возмещения ущерба в случае недобросовестной работы участников СРО.
+                Изменения в законодательстве
+                Последние изменения в Федеральный закон №372-ФЗ направлены на усиление контроля за деятельностью СРО и
+                повышение ответственности их участников. Например, были ужесточены требования к размеру компенсационного
+                фонда и процедурам исключения участников из СРО. Кроме того, введены новые механизмы для защиты прав
+                потребителей и усиления роли государственного надзора.
+              </p>
+              <p class="card__content">Значение изменений
+                Эти изменения способствуют повышению доверия к саморегулируемым организациям и улучшению качества
+                предоставляемых услуг. Участники СРО теперь обязаны строго следовать установленным стандартам, что
+                снижает риски для потребителей и заказчиков.</p>
+              <p class="card__content">
+                Федеральный закон №372-ФЗ продолжает развиваться, адаптируясь к современным вызовам. Это делает систему
+                саморегулирования более эффективной и надежной, что важно для устойчивого развития профессиональных
+                сообществ.
+              </p>
+              <div class="card__form">
+
+                <div class="popup-information__close">
+                  &#10006
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!--НОВОСТЬ №2 - popup-->
+
+        <div class="popup-information news-popup" id="popup5">
+          <div class="popup__container">
+            <div class="card news-card">
+              <h3 class="card__title news-card__title">Успешное прохождение проверки Ростехнадзора</h3>
+              <p class="card__content">
+                Наша саморегулируемая организация (СРО) с гордостью сообщает о том, что мы успешно прошли плановую проверку со стороны Ростехнадзора. По результатам тщательного анализа нашей деятельности было подтверждено полное соответствие всем требованиям действующего законодательства. Это важное событие подчеркивает нашу приверженность высоким стандартам работы и ответственному подходу к выполнению обязательств перед членами СРО и государственными органами.
+              </p>
+              <p class="card__content">
+                Проверка Ростехнадзора – это не только формальная процедура, но и возможность для организации продемонстрировать свою надежность и профессионализм. В ходе проверки специалисты ведомства оценивали документацию, порядок формирования компенсационного фонда, соблюдение требований к членству, а также эффективность внутреннего контроля за деятельностью участников СРО. Все аспекты нашей работы получили положительную оценку, что еще раз доказывает высокий уровень организации процессов внутри нашего объединения.
+              </p>
+              <p class="card__content">
+                Особое внимание во время проверки уделялось вопросам безопасности и качества выполнения работ нашими членами. Ростехнадзор отметил, что деятельность нашей СРО полностью соответствует установленным стандартам, а механизмы контроля и предотвращения рисков функционируют эффективно. Это подтверждает, что мы не только следуем букве закона, но и внедряем дополнительные меры для защиты интересов потребителей и заказчиков.
+              </p>
+              <p class="card__content">
+                Успешное прохождение проверки – это не только наша заслуга, но и результат слаженной работы всех членов СРО. Мы благодарим наших партнеров за соблюдение установленных правил и стандартов, что позволило достичь таких значимых результатов. Это достижение укрепляет доверие к нашей организации как среди профессионального сообщества, так и среди государственных структур.
+              </p>
+              <p class="card__content">Мы продолжаем совершенствовать свою деятельность, внедряя современные инструменты управления и контроля. Наша цель – не только соответствовать законодательным требованиям, но и опережать их, предлагая инновационные решения для развития саморегулирования в нашей отрасли.</p>
+              <p class="card__content">
+                Этот успех еще раз доказывает, что наша СРО является надежным партнером для всех участников рынка. Мы готовы продолжать поддерживать высокие стандарты качества и безопасности, способствуя устойчивому развитию профессионального сообщества.
+              </p>
+              <div class="card__form">
+
+                <div class="popup-information__close">
+                  &#10006
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
       <div class="news__remark section__remark">
         <svg width="40" height="40" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g clip-path="url(#clip0_1_547)">
@@ -900,7 +1033,7 @@
             Новые поправки направлены на усиление контроля за деятельностью членов СРО и повышение прозрачности их
             работы.
           </div>
-          <a href="#" class="news-link">
+          <a href="#" class="news-link open-popup" data-popup="popup4">
             Узнать больше
             <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g clip-path="url(#clip0_1_931)">
@@ -913,9 +1046,10 @@
                 </clipPath>
               </defs>
             </svg>
-
           </a>
         </article>
+       
+
         <article class="news-list__item">
           <img src="assets/low-angle-shot-modern-building-with-glass-windows.jpg" alt="Картинка новостей"
             class="news-list__img">
@@ -945,7 +1079,7 @@
             Наша СРО успешно прошла плановую проверку со стороны Ростехнадзора. По результатам проверки было
             подтверждено полное соответствие деятельности организации действующему законодательству.
           </div>
-          <a href="#" class="news-link">
+          <a href="#" class="news-link open-popup" data-popup="popup5">
             Узнать больше
             <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g clip-path="url(#clip0_1_931)">
@@ -963,7 +1097,7 @@
         </article>
       </div>
     </section>
-    <section class="section-callback section">
+    <section class="section-callback section" id="callback">
       <div class="callback-section__description">
         <h2 class="section-header">
           Оставьте заявку прямо сейчас!
@@ -1022,14 +1156,17 @@
         </div>
         <div class="contacts-adress">
           Адрес:
-          <a href="" class="contacts-adress__link"> г. Екатеринбург ....</a>
-          <a href="" class="contacts-adress__phone">+7(343)000-00-00</a>
+          <div class="contacts-adress__text"> г. Екатеринбург, ул. Первомайская, д. 56, офис 258</div>
+          <a href="tel:+79022702775" class="contacts-adress__phone">Тел: +7(343)000-00-00</a>
           <div class="map"></div>
           <p class="contacts-adress__timework">
-            Пн-Пт: 9:00-18:00, Сб-Вс: Выходной
+            Пн-Пт: 9:00-18:00, 
           </p>
-          <img src="assets/2947938.jpg" alt="карта">
-        </div>
+          <p class="contacts-adress__timework">
+            Сб-Вс: Выходной
+          </p>
+         </div> 
+         <div style="width: 100%; height: 400px;" id="map"></div>
       </div>
     </section>
   </main>
@@ -1109,8 +1246,13 @@
           </li>
         </ul>
       </address>
-  </footer> -->
-  <script src="js/index.js"></script>
+  </footer> 
+    <script src="js/index.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          initMap();
+      });
+  </script>
 </body>
 
 </html>

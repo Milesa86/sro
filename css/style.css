@@ -253,6 +253,8 @@ body {
         flex-direction: column;
         gap: 0px;
         margin: auto;
+        align-items: center;
+
     }
 
     .nav-menu__item {
@@ -260,7 +262,6 @@ body {
         font-size: 30px;
         line-height: 50px;
         padding: 30px;
-
     }
 }
 
@@ -284,35 +285,49 @@ body {
 
 @media screen and (min-width: 700px) and (max-width: 1000px) {
     .header-menu {
-    font-size: 16px;
-    text-align: center;
+        font-size: 16px;
+        text-align: center;
     }
 }
 
 /*________POP-UP CALL_________*/
 
 .popup-call {
-    width: 100%;
-    height: 100%;
     position: fixed;
     left: 0;
     top: 0;
-   background-color: transparent;
     z-index: 15;
-    transform: translateY(-44.5%) scale(0);
-    transition: .4s ease-in-out;
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
 }
-.popup__container {
-    display: flex;
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 14;
+}
+
+.popup__container {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    max-width: 800px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
 }
 
 .card {
     margin: auto;
-    max-width: 340px;
-    max-height: 354px;
-    padding: 0 15px;
     text-align: center;
     display: flex;
     align-items: center;
@@ -322,27 +337,31 @@ body {
     background: #fff;
     border-radius: 20px;
     position: relative;
-  } 
+}
 
-  .card__title {
+.card__title {
     font-size: 23px;
     font-weight: 900;
     color: var(--blue);
-  }
-  
-  .card__content {
+}
+
+.card__content {
     font-size: 13px;
     line-height: 18px;
     color: var(--blue);
-  }
-  
-  .card__form {
+}
+
+.call-card {
+    max-width: 250px;
+}
+
+.card__form {
     display: flex;
     flex-direction: column;
     gap: 10px;
-  }
-  
-  .card__form input {
+}
+
+.card__form input {
     margin-top: 10px;
     outline: 0;
     background: rgb(255, 255, 255);
@@ -351,124 +370,101 @@ body {
     border-radius: 14px;
     border: 1px solid var(--blue);
     color: black;
-  }
-  
-  .card__form button {
+}
+
+.card__form button {
     border: 0;
-    background:var(--blue);
+    background: var(--blue);
     color: #fff;
     padding: 0.68em;
     border-radius: 14px;
-  }
-  
-  .sign-up:hover {
-    opacity: 0.8;
-  } 
+}
 
-  .card__ps {
+.sign-up:hover {
+    opacity: 0.8;
+}
+
+.card__ps {
     padding-top: 10px;
     font-size: 13px;
     line-height: 18px;
     color: #333;
-  }
+}
 
-  .popup__close {
+.popup__close {
     position: absolute;
     top: 15px;
     right: 15px;
     font-size: 24px;
     cursor: pointer;
-  }
+}
 
-  .active-pop-up__call {
-    transform: translateY(0%) scale(100%);
-    background-color: rgba(0, 0, 0, 0.8);
+.active-pop-up__call {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.4s ease-in-out;
 
-  }
+}
+
 /*__________/\POP-UP CALL_________*/
 
 /*________POP-UP INFORMATION_________*/
 
 .popup-information {
-    width: 100%;
-    height: 100%;
     position: fixed;
     left: 0;
     top: 0;
-    background-color: transparent;
     z-index: 15;
-    transform: translateY(-44.5%) scale(0);
-    transition: .6s ease-in-out;
-}
-.popup__container {
-    display: flex;
+    display: none;
     width: 100%;
     height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
 }
 
-.card {
-    margin: auto;
-    padding: 0 15px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 12px;
-    background: #fff;
-    border-radius: 20px;
-    position: relative;
-  } 
 
-  .section-sub-description {
+.section-sub-description {
     max-width: 600px;
     max-height: 600px;
-    padding: 30px;
-  }
+}
 
-  .card__title {
-    font-size: 23px;
-    font-weight: 900;
-    color: var(--blue);
-  }
-  
-  .card__content {
-    font-size: 13px;
-    line-height: 18px;
-    color: var(--blue);
-  }
-  
-  
-  .card__button {
+
+.card__button {
     border: 0;
-    background:var(--blue);
+    background: var(--blue);
     color: #fff;
     padding: 0.68em;
     border-radius: 14px;
-  }
-  
-  .sign-up:hover {
-    opacity: 0.8;
-  } 
+}
 
-  .card__ps {
-    padding-top: 10px;
-    font-size: 13px;
-    line-height: 18px;
-    color: #333;
-  }
 
-  .popup-information__close {
+.popup-information__close {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 24px;
+    top: 5px;
+    right: 5px;
+    font-size: 30px;
     cursor: pointer;
-  }
+    font-weight: bold;
+}
 
-  .active-pop-up__information {
-    transform: translateY(0%) scale(100%);
-    background-color: rgba(0, 0, 0, 0.8);
+.active-pop-up__information {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 
@@ -576,7 +572,15 @@ body {
         transition: all 0.65s;
         content: "";
     }
+
+    .button__orange:hover {
+        color: var(--background);
+    }
 }
+
+
+
+
 
 /*_________/\BUTTON ANIMATION_________*/
 
@@ -679,7 +683,7 @@ body {
     color: var(--blue);
     font-family: var(--second-family);
     font-size: 45px;
-    line-height: 58.5px;
+    line-height: 150%;
     letter-spacing: 0.36px;
     font-weight: 400;
     margin-bottom: 12px;
@@ -689,11 +693,13 @@ body {
     margin-bottom: 12px;
 }
 
+
+
 .section {
-    margin-bottom: 140px;
+    margin-bottom: 40px;
 }
 
-.advantages {
+.block-advantages {
     display: flex;
     gap: 40px;
     margin-top: 20px;
@@ -703,7 +709,7 @@ body {
 
 .advantages__point {
     text-align: center;
-    padding: 24px 50px;
+    padding: 24px 24px;
     background-color: rgba(170, 170, 170, 0.2);
 }
 
@@ -890,13 +896,35 @@ body {
     flex-wrap: nowrap;
     gap: 30px;
     justify-content: space-between;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    position: relative;
+
 }
 
 .price_plan {
     background-color: rgba(170, 170, 170, 0.2);
     padding: 50px;
     box-shadow: -1px 6px 18px 0px rgba(0, 0, 0, 0.09);
-    width: 30%;
+    width: calc(33.33% - 40px);
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+}
+
+/* Две карточки в ряду с учетом отступов */
+
+@media (max-width: 1100px) and (min-width: 700px) {
+    .price_plan {
+        width: calc(50% - 20px);
+    }
+}
+
+/* Одна карточка в ряду */
+
+@media (max-width: 700px) {
+    .price_plan {
+        width: 100%;
+    }
 }
 
 
@@ -905,6 +933,7 @@ body {
     font-size: 32px;
     color: var(--blue);
     min-height: 80px;
+    line-height: 120%;
 
 }
 
@@ -920,7 +949,7 @@ body {
     position: absolute;
     display: block;
     background-color: #d7d7d7;
-    width: 300px;
+    width: 100%;
     height: 1px;
 }
 
@@ -940,6 +969,40 @@ body {
     flex-shrink: 0;
 }
 
+/*___________ARROWS___________*/
+
+.price-container {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden
+}
+
+.arrows {
+    display: none;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    justify-content: space-between;
+    pointer-events: none;
+}
+
+.scroll-left {
+    transform: rotate(180deg);
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.scroll-right {
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+@media (max-width: 700px) {
+    .arrows {
+        display: flex;
+    }
+}
+
 .section-callback {
     display: flex;
     max-width: 1400px;
@@ -953,10 +1016,6 @@ body {
     position: relative;
     justify-content: space-between;
     gap: 45px;
-}
-
-.footer-contacts {
-    max-width: 50%;
 }
 
 .callback-form {
@@ -1026,8 +1085,8 @@ body {
     background-color: #f0f0f0;
 }
 
-.contacts-adress__timework {
-    margin-bottom: 42px;
+.contacts-adress {
+    margin-bottom: 20px;
 }
 
 .footer {
@@ -1112,6 +1171,22 @@ body {
     flex-shrink: 0;
 }
 
+/*_______NEWS POPUP_____*/
+
+.news-card {
+    padding: 20px;
+    overflow-y: scroll;
+    text-align: justify;
+
+}
+
+.news-card__title {
+    text-align: center;
+}
+
+/*__________/\NEWS POPUP________*/
+
+
 .nav-footer {
     background-color: var(--blue);
     max-width: 1400px;
@@ -1124,4 +1199,296 @@ body {
     color: var(--white);
     position: relative;
     padding: 50px 0px;
+}
+
+@media screen and (max-width: 1100px) and (min-width: 700px) {
+
+    .container {
+        max-width: 90%;
+        padding: 20px;
+        margin: 0 auto;
+    }
+
+    .nav-menu {
+        gap: 60px;
+        padding: 0 10px;
+    }
+
+    .main-header {
+        font-size: 48px;
+        max-width: 100%;
+    }
+
+    .section-button {
+        font-size: 14px;
+        padding: 17px 33px;
+    }
+
+    .section-description {
+        font-size: 16px;
+    }
+
+    .section-description {
+        font-size: 16px;
+        max-width: 100%;
+    }
+
+    p {
+        font-size: 18px;
+    }
+
+    .section-about-us {
+        padding: 160px 0;
+    }
+
+    .section__remark {
+        font-size: 16px;
+        max-width: 100%;
+        margin-bottom: 26px;
+    }
+
+    .section {
+        margin-bottom: 86px;
+    }
+
+    .section-advantages {
+        gap: 40px;
+    }
+
+    body {
+        font-size: 16px;
+    }
+
+    .section-header {
+        font-size: 36px;
+        line-height: 100%;
+    }
+
+    .block-advantages {
+        display: none;
+    }
+
+    .offer-description {
+        padding: 0;
+    }
+
+    .section-offer {
+        padding: 20px;
+    }
+
+    .offer-buttons {
+        gap: 20px;
+    }
+
+    .offer-buttons__item {
+        padding: 16px 30px;
+        font-size: 14px;
+    }
+
+    .value__img {
+        max-width: 40%;
+    }
+
+    .wrapper {
+        gap: 30px;
+    }
+
+    .article {
+        padding: 40px;
+        margin: 0;
+    }
+
+    .section-value {
+        gap: 20px;
+    }
+
+    .value-header {
+        margin: 15px;
+    }
+
+    .value-list__item {
+        margin-bottom: 17px;
+        font-size: 14px;
+        line-height: 120%;
+    }
+
+    .price-description {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 25px;
+    }
+
+    .price__remark {
+        display: flex;
+        justify-content: center;
+    }
+
+    .news__remark {
+        display: flex;
+        justify-content: center;
+    }
+
+    .section-news {
+        font-size: 14px;
+    }
+
+    .section-news {
+        margin: 100px auto;
+    }
+
+    .section-callback {
+        padding: 15px;
+    }
+
+    .footer-contacts {
+        width: 50%;
+    }
+
+
+}
+
+/*_________MOBILE STYLE______*/
+
+
+@media screen and (max-width: 699px) {
+    .container {
+        padding: 20px;
+    }
+
+    .main-header {
+        font-size: 36px;
+        max-width: 100%;
+    }
+
+    .section-about-us {
+        padding: 130px 0;
+    }
+
+    .section__remark {
+        font-size: 14px;
+        max-width: 100%;
+    }
+
+    .section {
+        margin-bottom: 0;
+    }
+
+    .section-description {
+        font-style: 16px;
+        max-width: 100%;
+    }
+
+    .advantages {
+        display: none;
+    }
+
+    .section-header {
+        font-size: 24px;
+    }
+
+    .section-offer {
+        padding-top: 40px;
+    }
+
+    .offer-description {
+        padding: 0;
+    }
+
+    .offer-buttons {
+        gap: 5px;
+        margin: 0 auto;
+    }
+
+    .offer-buttons__item {
+        gap: 2px;
+        font-size: 8px;
+        border-radius: 15px;
+        padding: 5px;
+    }
+
+    .card-wrapper {
+        margin-top: 20px;
+    }
+
+    .article-company__img {
+        display: none;
+    }
+
+    .article {
+        margin: 0;
+        padding: 15px;
+    }
+
+    .section-value {
+        display: none;
+    }
+
+    .price-description {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .price__remark {
+        display: flex;
+        justify-content: center;
+    }
+
+    .price-section__description {
+        max-width: 100%;
+    }
+
+    .section-offer {
+        margin-bottom: 140px;
+    }
+
+    .price_plan__list {
+        padding: 0;
+    }
+
+    .news__remark {
+        display: flex;
+        justify-content: center;
+    }
+
+    .news-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .news__remark {
+        margin: -10px auto 10px auto;
+        font-size: 14px;
+    }
+
+    .news__theme {
+        padding: 10px 15px;
+    }
+
+    .section-news {
+        margin: 50px auto;
+    }
+
+    .news-list__item {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    .section-callback {
+        flex-direction: column;
+        justify-content: center;
+        margin: 0;
+    }
+
+    .footer-contacts {
+        padding: 20px;
+    }
+
+    .callback-description {
+       text-align: center;
+       padding: 0 40px;
+    }
+
+
+
 }
